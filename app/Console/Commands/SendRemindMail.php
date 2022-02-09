@@ -45,10 +45,9 @@ class SendRemindMail extends Command
     public function handle()
     {
         
-        // $now = Carbon::now()->format('Y-m-d H:i:00');
-        // $send_end = Carbon::now()->addMinutes(15)->format('Y-m-d H:i:00');
-        // $users = User::whereBetween('send_at', [$now, $send_end])->get();
-        $users = User::get();
+        $now = Carbon::now()->format('Y-m-d H:i:00');
+        $send_end = Carbon::now()->addMinutes(15)->format('Y-m-d H:i:00');
+        $users = User::whereBetween('send_at', [$now, $send_end])->get();
         
         foreach($users as $user){
             Log::info(
